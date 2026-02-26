@@ -5,33 +5,36 @@
  */
 
 
-    public class PalindromeCheckerApp{
+import java.util.Stack;
+
+    public class PalindromeCheckerApp {
 
         public static void main(String[] args) {
 
             // Original string
-            String original = "level";
+            String original = "malayalam";
 
-            // Convert String to character array
-            char[] characters = original.toCharArray();
+            // Create Stack
+            Stack<Character> stack = new Stack<>();
 
-            // Two-pointer variables
-            int start = 0;
-            int end = characters.length - 1;
+            // Push characters into stack
+            for (int i = 0; i < original.length(); i++) {
+                stack.push(original.charAt(i));
+            }
 
             boolean isPalindrome = true;
 
-            // Compare characters from both ends
-            while (start < end) {
-                if (characters[start] != characters[end]) {
+            // Pop characters and compare
+            for (int i = 0; i < original.length(); i++) {
+                char poppedChar = stack.pop();
+
+                if (original.charAt(i) != poppedChar) {
                     isPalindrome = false;
                     break;
                 }
-                start++;
-                end--;
             }
 
-            // Display result
+            // Print result
             if (isPalindrome) {
                 System.out.println(original + " is a Palindrome.");
             } else {
