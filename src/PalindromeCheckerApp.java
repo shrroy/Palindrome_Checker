@@ -3,10 +3,7 @@
  * Version: 1.0
  * Description: Console-based application to validate palindrome strings.
  */
-
-
-import java.util.Stack;
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
 
 public class PalindromeCheckerApp {
@@ -14,30 +11,25 @@ public class PalindromeCheckerApp {
     public static void main(String[] args) {
 
         // Original string
-        String original = "radar";
+        String original = "malayalam";
 
-        // Create Stack (LIFO)
-        Stack<Character> stack = new Stack<>();
+        // Create Deque
+        Deque<Character> deque = new LinkedList<>();
 
-        // Create Queue (FIFO)
-        Queue<Character> queue = new LinkedList<>();
-
-        // Insert characters into both Stack and Queue
+        // Insert characters into deque
         for (int i = 0; i < original.length(); i++) {
-            char ch = original.charAt(i);
-            stack.push(ch);      // LIFO
-            queue.add(ch);       // FIFO (enqueue)
+            deque.addLast(original.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare pop (stack) and dequeue (queue)
-        while (!stack.isEmpty()) {
+        // Compare front and rear characters
+        while (deque.size() > 1) {
 
-            char fromStack = stack.pop();     // LIFO removal
-            char fromQueue = queue.remove();  // FIFO removal
+            char front = deque.removeFirst();
+            char rear = deque.removeLast();
 
-            if (fromStack != fromQueue) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
