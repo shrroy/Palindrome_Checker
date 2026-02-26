@@ -3,30 +3,30 @@
  * Version: 1.0
  * Description: Console-based application to validate palindrome strings.
  */
-//Use Case 1: Application Entry & Welcome Message
 
-public class PalindromeCheckerApp {
 
-    // Application version constant
-    static final String APP_VERSION = "1.0";
+    public class PalindromeCheckerApp {
 
-    /**
-     * Main method - Entry point of the application
-     * JVM invokes this method automatically
-     */
-    public static void main(String[] args) {
+        public static void main(String[] args) {
 
-        // Display welcome message
-        System.out.println("====================================");
-        System.out.println("   Welcome to Palindrome Checker   ");
-        System.out.println("====================================");
+            // Hardcoded string (String Literal)
+            String word = "malayalam";
 
-        // Display application details
-        System.out.println("Application Name : Palindrome Checker");
-        System.out.println("Application Version : " + APP_VERSION);
-        System.out.println("------------------------------------");
+            // Variable to store reversed string
+            String reversed = "";
 
-        // Placeholder for next use case
-        System.out.println("Ready to check palindromes...");
+            // Reverse the string using loop
+            for (int i = word.length() - 1; i >= 0; i--) {
+                reversed = reversed + word.charAt(i);
+            }
+
+            // Check palindrome using if-else condition
+            if (word.equals(reversed)) {
+                System.out.println(word + " is a Palindrome.");
+            } else {
+                System.out.println(word + " is NOT a Palindrome.");
+            }
+
+            System.out.println("Program Ended.");
+        }
     }
-}
