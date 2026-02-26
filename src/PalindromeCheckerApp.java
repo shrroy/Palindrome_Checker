@@ -6,39 +6,48 @@
 
 
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
-    public class PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            // Original string
-            String original = "malayalam";
+        // Original string
+        String original = "radar";
 
-            // Create Stack
-            Stack<Character> stack = new Stack<>();
+        // Create Stack (LIFO)
+        Stack<Character> stack = new Stack<>();
 
-            // Push characters into stack
-            for (int i = 0; i < original.length(); i++) {
-                stack.push(original.charAt(i));
-            }
+        // Create Queue (FIFO)
+        Queue<Character> queue = new LinkedList<>();
 
-            boolean isPalindrome = true;
+        // Insert characters into both Stack and Queue
+        for (int i = 0; i < original.length(); i++) {
+            char ch = original.charAt(i);
+            stack.push(ch);      // LIFO
+            queue.add(ch);       // FIFO (enqueue)
+        }
 
-            // Pop characters and compare
-            for (int i = 0; i < original.length(); i++) {
-                char poppedChar = stack.pop();
+        boolean isPalindrome = true;
 
-                if (original.charAt(i) != poppedChar) {
-                    isPalindrome = false;
-                    break;
-                }
-            }
+        // Compare pop (stack) and dequeue (queue)
+        while (!stack.isEmpty()) {
 
-            // Print result
-            if (isPalindrome) {
-                System.out.println(original + " is a Palindrome.");
-            } else {
-                System.out.println(original + " is NOT a Palindrome.");
+            char fromStack = stack.pop();     // LIFO removal
+            char fromQueue = queue.remove();  // FIFO removal
+
+            if (fromStack != fromQueue) {
+                isPalindrome = false;
+                break;
             }
         }
+
+        // Print result
+        if (isPalindrome) {
+            System.out.println(original + " is a Palindrome.");
+        } else {
+            System.out.println(original + " is NOT a Palindrome.");
+        }
     }
+}
